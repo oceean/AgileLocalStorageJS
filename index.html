@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Meta -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Agile</title>
+
+    <!-- Style -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald:400,700&amp;subset=cyrillic">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+</head>
+<body>
+
+    <!-- View -->
+    <main id="app" :class="styleMode">
+        <h1 class="title is-1 is-fat">Аджаил</h1>
+        <button @click="rows[Object.keys(rows)[0]].push({t:'',n:''})" class="button" :class="styleMode=='day' ? 'has-background-white':'is-dark has-background-black'">
+            <i class="fas fa-plus"></i>
+        </button>
+        <button @click="lookup()" class="button" :class="styleMode=='day' ? 'has-background-white':'is-dark has-background-black'">
+            <i class="fas fa-save"></i>
+        </button>
+        <button @click="styleMode = styleMode=='day' ? 'night' : 'day'" class="button" :class="styleMode=='day' ? 'has-background-white':'is-dark has-background-black'">
+            <i class="fas fa-vial"></i>
+        </button>
+        <br>
+        <br>
+        <div class="columns">
+            <div class="column" :class="'is-'+(12/(rows.length))" v-for="row, name in rows">
+                <h2 class="title is-3">{{name}}</h2>
+                <draggable class="draggable" v-model="rows[name]" :options="{group:'stickers', animation: 200}" @start="drag=true" @end="lookup();drag=false">
+                    <div @click="edit=element" class="box" v-for="element in row">
+                        <h2 v-if="element!=edit" class="title is-5 is-fat">{{element.t}}</h2>
+                        <p v-if="element!=edit">{{element.n}}</p>
+                        <input v-if="element==edit" v-model="element.t" class="lines title is-5 is-fat" placeholder="Новая задача..."></input>
+                        <br v-if="element==edit">
+                        <textarea rows="5" @keyup.enter="edit=null;lookup()" v-if="element==edit" v-model="element.n" class="lines" placeholder="Новый текст..."></textarea>
+                    </div>
+                </draggable>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/2.5.2/vue.min.js"></script>
+    <br>
+    <script src="http://cdn.jsdelivr.net/npm/sortablejs@1.7.0/Sortable.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.17.0/vuedraggable.min.js"></script>
+    <script src="main.js"></script>
+
+</body>
+</html>

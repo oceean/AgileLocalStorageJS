@@ -1,0 +1,50 @@
+.title {
+    font-weight: 400;
+}
+.is-fat {
+    font-weight: 700;
+}
+* {
+    font-family: 'Oswald', sans-serif !important;
+}
+.draggable {
+    min-width: 100%;
+    min-height: 100px;
+}
+.lines {
+    width: 100%;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    resize: none;
+    height: auto;
+}
+.lines::placeholder {
+    color: grey;
+}
+body {
+    display: flex;
+}
+#app {
+    min-width: 100vw;
+    min-height: 100vh;
+    margin: 0;
+    padding: 1em;
+}
+.day, .day * {
+    background: #fff;
+    color: #000; 
+}
+.night, .night * {
+    background: #000;
+    color: #fff; 
+}
+.box {
+    box-shadow: none;
+}
+.night .box {
+    border: rgb(40, 40, 40) .04em solid;
+}
+.day .box {
+    border: rgb(215, 215, 215) .04em solid;
+}
