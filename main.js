@@ -10,6 +10,7 @@ app = new Vue({
     },
     methods: {
         lookup: function() {
+            this.edit = null;
             localStorage.setItem("rows", JSON.stringify(this.rows));
         }
     }

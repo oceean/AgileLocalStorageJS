@@ -40,7 +40,7 @@
                         <p v-if="element!=edit">{{element.n}}</p>
                         <input v-if="element==edit" v-model="element.t" class="lines title is-5 is-fat" placeholder="New task..."></input>
                         <br v-if="element==edit">
-                        <textarea rows="5" @keyup.enter="edit=null;lookup()" v-if="element==edit" v-model="element.n" class="lines" placeholder="New body..."></textarea>
+                        <textarea rows="5" @keyup.enter="lookup()" v-if="element==edit" v-model="element.n" class="lines" placeholder="New body..."></textarea>
                     </div>
                 </draggable>
             </div>
