@@ -11,9 +11,9 @@ app = new Vue({
     methods: {
         lookup: function() {
             this.edit = null;
-            for (row_index in rows) {
-                if (!rows[row_index].t) {
-                    rows.splice(row_index, 1);
+            for (row_index in this.rows) {
+                if (!this.rows[row_index].t) {
+                    this.rows.splice(row_index, 1);
                 }
             }
             localStorage.setItem("rows", JSON.stringify(this.rows));
