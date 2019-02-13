@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Agile</title>
+    <title>Stickers Columns</title>
 
     <!-- Style -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
@@ -19,7 +19,7 @@
 
     <!-- View -->
     <main id="app" :class="styleMode">
-        <h1 class="title is-1 is-fat">Аджаил</h1>
+        <h1 class="title is-1 is-fat">Stickers Columns</h1>
         <button @click="rows[Object.keys(rows)[0]].push({t:'',n:''})" class="button" :class="styleMode=='day' ? 'has-background-white':'is-dark has-background-black'">
             <i class="fas fa-plus"></i>
         </button>
@@ -35,12 +35,12 @@
             <div class="column" :class="'is-'+(12/(rows.length))" v-for="row, name in rows">
                 <h2 class="title is-3">{{name}}</h2>
                 <draggable class="draggable" v-model="rows[name]" :options="{group:'stickers', animation: 200}" @start="drag=true" @end="lookup();drag=false">
-                    <div @click="edit=element" class="box" v-for="element in row">
+                    <div @click="edit=element" class="box sticker" v-for="element in row">
                         <h2 v-if="element!=edit" class="title is-5 is-fat">{{element.t}}</h2>
                         <p v-if="element!=edit">{{element.n}}</p>
-                        <input v-if="element==edit" v-model="element.t" class="lines title is-5 is-fat" placeholder="Новая задача..."></input>
+                        <input v-if="element==edit" v-model="element.t" class="lines title is-5 is-fat" placeholder="New task..."></input>
                         <br v-if="element==edit">
-                        <textarea rows="5" @keyup.enter="edit=null;lookup()" v-if="element==edit" v-model="element.n" class="lines" placeholder="Новый текст..."></textarea>
+                        <textarea rows="5" @keyup.enter="edit=null;lookup()" v-if="element==edit" v-model="element.n" class="lines" placeholder="New body..."></textarea>
                     </div>
                 </draggable>
             </div>

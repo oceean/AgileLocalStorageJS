@@ -1,11 +1,11 @@
-const rows = JSON.parse(localStorage.getItem("rows") || '{"Намечается":[],"Выполняется":[],"Выполнено":[]}');
+const rows = JSON.parse(localStorage.getItem("rows") || '{"Thinking":[],"Working":[],"Complited":[]}');
 
 app = new Vue({
     el: "#app",
     data: {
         styleMode: "night",
         drag: false,
-        edit: {disablet: "yet"},
+        edit: {disabled: "yet"},
         rows: rows,
     },
     methods: {
@@ -14,3 +14,16 @@ app = new Vue({
         }
     }
 })
+
+onmousedown = (e) => {
+    let logic = false;
+    for (turn of e.path) {
+        findClass = "box sticker";
+        if (turn.className == findClass) {
+            logic = true;
+        }
+    }
+    if (!logic) {
+        app.lookup()
+    }
+};
