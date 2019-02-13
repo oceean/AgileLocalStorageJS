@@ -19,8 +19,8 @@ app = new Vue({
 onmousedown = (e) => {
     let logic = false;
     for (turn of e.path) {
-        findClass = "box sticker";
-        if (turn.className == findClass) {
+        findClass = "sticker";
+        if (turn.className.includes(findClass)) {
             logic = true;
         }
     }
