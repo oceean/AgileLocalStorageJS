@@ -13,7 +13,7 @@ app = new Vue({
             this.edit = null;
             for (row_index in this.rows) {
                 if (!this.rows[row_index].t) {
-                    this.rows.splice(row_index, 1);
+                    this.rows.slice(row_index, 1);
                 }
             }
             localStorage.setItem("rows", JSON.stringify(this.rows));
