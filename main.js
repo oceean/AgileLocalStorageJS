@@ -1,22 +1,23 @@
-const rows = JSON.parse(localStorage.getItem("rows") || '{"Thinking":[],"Working":[],"Complited":[]}');
-
 app = new Vue({
     el: "#app",
     data: {
-        styleMode: "night",
+        styleMode: localStorage.getItem("styleMode") || "night",
         drag: false,
         edit: {disabled: "yet"},
-        rows: rows,
+        rows: JSON.parse(localStorage.getItem("rows") || '{"Thinking":[],"Working":[],"Complited":[]}'),
     },
     methods: {
-        lookup: function() {
+        styleMode: function (val) {
+            localStorage.setItem("styleMode", val);
+        },
+        lookup: function (val) {
             this.edit = null;
-            for (row_index in this.rows) {
-                if (!this.rows[row_index].t) {
-                    this.rows.slice(row_index, 1);
+            for (row_index in val) {
+                if (val[row_index].t == "") {
+                    val.slice(row_index, 1);
                 }
             }
-            localStorage.setItem("rows", JSON.stringify(this.rows));
+            localStorage.setItem("rows", JSON.stringify(Object.assign([], val)));
         }
     }
 })
