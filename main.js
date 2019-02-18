@@ -28,7 +28,7 @@ onmousedown = (e) => {
     let logic = false;
     for (turn of e.path) {
         findClass = "sticker";
-        if (turn.className && turn.className.lenght && turn.className.includes(findClass)) {
+        if (turn.className && turn.className.includes && turn.className.includes(findClass)) {
             logic = true;
         }
     }
