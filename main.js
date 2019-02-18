@@ -15,8 +15,10 @@ app = new Vue({
         lookup: function () {
             this.edit = null;
             for (row_index in this.rows) {
-                if (this.rows[row_index].t == "") {
-                    this.rows.slice(row_index, 1);
+                for ( sticker_index in this.rows[row_index]) {
+                    if (!this.rows[row_index][sticker_index].t || !this.rows[row_index][sticker_index].n) {
+                        this.rows[row_index].splice(sticker_index, 1);
+                    }
                 }
             }
             localStorage.setItem("rows", JSON.stringify(Object.assign({}, this.rows)));
