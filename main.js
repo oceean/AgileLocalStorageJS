@@ -19,7 +19,7 @@ app = new Vue({
                     this.rows.slice(row_index, 1);
                 }
             }
-            localStorage.setItem("rows", JSON.stringify(Object.assign([], this.rows)));
+            localStorage.setItem("rows", JSON.stringify(Object.assign({}, this.rows)));
         }
     }
 })
